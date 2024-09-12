@@ -1,5 +1,6 @@
 import 'package:bloc_management/bloc/counter/counter_bloc.dart';
 import 'package:bloc_management/bloc/counter/counter_event.dart';
+import 'package:bloc_management/bloc/counter/counter_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -22,14 +23,16 @@ class _CounterScreenState extends State<CounterScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
 // here we use blocbuilder which come from flutter_bloc package
-          BlocBuilder(builder: (context, state) {
-            return const Center(
-              child: Text(
-                "0",
-                style: TextStyle(fontSize: 40),
-              ),
-            );
-          }),
+          BlocBuilder<CounterBloc, CounterState>(
+            builder: (context, state) {
+              return Center(
+                child: Text(
+                  state.counter.toString(),
+                  style: TextStyle(fontSize: 40),
+                ),
+              );
+            },
+          ),
 
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
